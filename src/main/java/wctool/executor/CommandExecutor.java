@@ -1,18 +1,8 @@
 package wctool.executor;
 
-import wctool.util.CommandValidator;
+import wctool.models.Command;
 
-public class CommandExecutor {
+public interface CommandExecutor {
 
-    private CommandValidator validator;
-
-    public CommandExecutor(CommandValidator validator) {
-        this.validator = validator;
-    }
-
-    public void execute(String userInput) {
-        if (validator.validateUserInput(userInput)) {
-//            CommandFactory.getCommand()
-        }
-    }
+    void execute(Command command);
 }
