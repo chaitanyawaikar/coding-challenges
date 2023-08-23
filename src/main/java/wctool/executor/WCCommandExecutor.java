@@ -15,6 +15,7 @@ import static wctool.util.Constants.WHITESPACE_SEPARATOR;
 
 public class WCCommandExecutor implements CommandExecutor {
 
+    public static final String WC_COMMAND = "ccwc";
     private Printer printer;
 
     public WCCommandExecutor(Printer printer) {

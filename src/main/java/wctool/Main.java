@@ -24,7 +24,6 @@ public class Main {
             final String input = reader.readLine();
             final Command command = new Command(input);
             service.processCommand(command);
-            // TODO - Add exit command executor
         }
     }
 }
