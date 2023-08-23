@@ -10,7 +10,7 @@ Following these philosophies has made the simple unix customCommand line tools s
 ## Expected Output
 
 `wc -c test.txt`
-335092 test.txt
+335182 test.txt
 
 `wc -l test.txt`
 7188 test.txt
@@ -19,5 +19,5 @@ Following these philosophies has made the simple unix customCommand line tools s
 58163 test.txt
 
 `wc -m test.txt`
-332196 test.txt
+332286 test.txt
 

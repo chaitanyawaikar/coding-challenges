@@ -84,12 +84,13 @@ public class WCCommandExecutor implements CommandExecutor {
     private void calculateNumberOfCharacters(String fileName) {
         Path path = Paths.get(fileName);
         try {
-            long lines =
+            long characters =
                     Files
-                            .lines(path)
-                            .mapToInt(String::length)
-                            .reduce(0, Integer::sum);
-            printer.print("Characters: " + lines);
+                            .readAllLines(path)
+                            .stream()
+                            .mapToLong(str -> str.chars().count())
+                            .sum();
+            printer.print("Characters: " + characters);
         } catch (IOException e) {
             e.printStackTrace();
         }
