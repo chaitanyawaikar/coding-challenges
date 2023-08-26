@@ -1,9 +1,9 @@
 package wctool.executor;
 
+import wctool.exception.InvalidCommandOptionException;
 import wctool.io.Printer;
 import wctool.models.Command;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
 import static wctool.util.Constants.BASE_PATH;
-import static wctool.util.Constants.WHITESPACE_SEPARATOR;
 
 public class WCCommandExecutor implements CommandExecutor {
 
@@ -43,7 +42,8 @@ public class WCCommandExecutor implements CommandExecutor {
             case "-l" -> calculateNumberOfLines(fileName);
             case "-w" -> calculateNumberOfWords(fileName);
             case "-m" -> calculateNumberOfCharacters(fileName);
-            default -> calculateAllActions(fileName);
+            case "" -> calculateAllActions(fileName);
+            default -> throw new InvalidCommandOptionException(commandOption);
         }
     }
 
