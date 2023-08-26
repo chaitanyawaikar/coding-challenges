@@ -1,17 +1,15 @@
 package wctool.models;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import wctool.exception.InvalidNumberOfArgumentsException;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class CommandTest {
 
     @Test
-    public void testCommandCreationWithValidInput() {
+    public void shouldCreateCommandForValidInput() {
         //given
         String inputLine = "CommandName param1 param2 param3";
 
@@ -20,15 +18,15 @@ public class CommandTest {
 
         //then
         List<String> params = command.getParams();
-        assertEquals("commandname", command.getCommandName());
-        assertEquals(3, params.size());
-        assertEquals("param1", params.get(0));
-        assertEquals("param2", params.get(1));
-        assertEquals("param3", params.get(2));
+        Assertions.assertEquals("commandname", command.getCommandName());
+        Assertions.assertEquals(3, params.size());
+        Assertions.assertEquals("param1", params.get(0));
+        Assertions.assertEquals("param2", params.get(1));
+        Assertions.assertEquals("param3", params.get(2));
     }
 
     @Test
-    public void testCommandCreationWithNoParams() {
+    public void shouldCreateCommandWithNoParams() {
         // given
         String inputLine = "CommandName";
 
@@ -37,12 +35,12 @@ public class CommandTest {
 
         // then
         List<String> params = command.getParams();
-        assertEquals("commandname", command.getCommandName());
-        assertEquals(0, params.size());
+        Assertions.assertEquals("commandname", command.getCommandName());
+        Assertions.assertEquals(0, params.size());
     }
 
     @Test
-    public void testCommandCreationWithMultipleSpaces() {
+    public void shouldCreateCommandEvenWithMultipleSpaces() {
         // given
         String inputLine = "  CommandName   param1   param2   ";
 
@@ -51,22 +49,22 @@ public class CommandTest {
 
         // then
         List<String> params = command.getParams();
-        assertEquals("commandname", command.getCommandName());
-        assertEquals(2, params.size());
-        assertEquals("param1", params.get(0));
-        assertEquals("param2", params.get(1));
+        Assertions.assertEquals("commandname", command.getCommandName());
+        Assertions.assertEquals(2, params.size());
+        Assertions.assertEquals("param1", params.get(0));
+        Assertions.assertEquals("param2", params.get(1));
     }
 
     @Test
-    public void testCommandCreationWithEmptyInput() {
-        assertThrows(InvalidNumberOfArgumentsException.class, () -> {
+    public void shouldThrowInvalidNumberOfArgumentsExceptionWhenInputCommandIsEmpty() {
+        Assertions.assertThrows(InvalidNumberOfArgumentsException.class, () -> {
             new Command("");
         });
     }
 
     @Test
-    public void testCommandCreationWithOnlySpaces() {
-        assertThrows(InvalidNumberOfArgumentsException.class, () -> {
+    public void shouldThrowInvalidNumberOfArgumentsExceptionWhenInputCommandHasOnlySpaces() {
+        Assertions.assertThrows(InvalidNumberOfArgumentsException.class, () -> {
             new Command("   ");
         });
     }
