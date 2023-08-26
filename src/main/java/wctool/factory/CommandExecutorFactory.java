@@ -20,7 +20,7 @@ public class CommandExecutorFactory {
     public CommandExecutorFactory(Printer printer) {
         commandExecutorMap = new HashMap<>();
         commandExecutorMap.put(WC_COMMAND, new WCCommandExecutor(printer));
-        commandExecutorMap.put(EXIT_COMMAND, new ExitCommandExecutor());
+        commandExecutorMap.put(EXIT_COMMAND, new ExitCommandExecutor(printer));
     }
 
     public CommandExecutor getCommandExecutor(Command command) {

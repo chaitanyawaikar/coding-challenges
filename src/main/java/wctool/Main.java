@@ -19,6 +19,8 @@ public class Main {
 
     private static void start() throws IOException {
         Printer printer = new ConsolePrinter();
+        printer.print("Starting the server. Waiting for user input");
+
         CommandValidatorFactory commandValidatorFactory = new CommandValidatorFactory();
         CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory(printer);
         CommandService service = new CommandService(commandValidatorFactory, commandExecutorFactory);
