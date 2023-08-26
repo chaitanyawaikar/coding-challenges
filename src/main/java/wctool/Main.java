@@ -1,5 +1,7 @@
 package wctool;
 
+import wctool.factory.CommandExecutorFactory;
+import wctool.factory.CommandValidatorFactory;
 import wctool.io.ConsolePrinter;
 import wctool.io.Printer;
 import wctool.models.Command;
@@ -17,7 +19,10 @@ public class Main {
 
     private static void start() throws IOException {
         Printer printer = new ConsolePrinter();
-        CommandService service = new CommandService(printer);
+        CommandValidatorFactory commandValidatorFactory = new CommandValidatorFactory();
+        CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory(printer);
+        CommandService service = new CommandService(commandValidatorFactory, commandExecutorFactory);
+
         final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             final String input = reader.readLine();
