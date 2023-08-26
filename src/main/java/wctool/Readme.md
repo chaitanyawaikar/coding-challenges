@@ -15,6 +15,8 @@ tools. There’s even a Coursera course on Linux and Bash for Data Engineering.
 
 ## How to run
 
+Currently, this project supports files specified in the path `./src/main/resources/wctool/`.
+
 We can use the following command which would start reading the user input
 `mvn clean compile exec:java`
 
