@@ -18,18 +18,22 @@ public class Main {
     }
 
     private static void start() throws IOException {
-        Printer printer = new ConsolePrinter();
-        printer.print("Starting the server. Waiting for user input");
-
-        CommandValidatorFactory commandValidatorFactory = new CommandValidatorFactory();
-        CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory(printer);
-        CommandService service = new CommandService(commandValidatorFactory, commandExecutorFactory);
-
+        CommandService service = setupCommandService();
         final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             final String input = reader.readLine();
             final Command command = new Command(input);
             service.processCommand(command);
         }
+    }
+
+    private static CommandService setupCommandService() {
+        Printer printer = new ConsolePrinter();
+        printer.print("Starting the server. Waiting for user input");
+
+        CommandValidatorFactory commandValidatorFactory = new CommandValidatorFactory();
+        CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory(printer);
+        CommandService service = new CommandService(commandValidatorFactory, commandExecutorFactory);
+        return service;
     }
 }
