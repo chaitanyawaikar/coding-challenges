@@ -4,7 +4,8 @@ import wctool.factory.CommandExecutorFactory;
 import wctool.factory.CommandValidatorFactory;
 import wctool.io.ConsolePrinter;
 import wctool.io.Printer;
-import wctool.models.Command;
+import wctool.mode.PipeCommandMode;
+import wctool.mode.SingleCommandMode;
 import wctool.service.CommandService;
 
 import java.io.BufferedReader;
@@ -22,8 +23,8 @@ public class Main {
         final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             final String input = reader.readLine();
-            final Command command = new Command(input);
-            service.processCommand(command);
+            if (input.contains("|")) new PipeCommandMode(service).process(input);
+            else new SingleCommandMode(service).process(input);
         }
     }
 
@@ -33,7 +34,6 @@ public class Main {
 
         CommandValidatorFactory commandValidatorFactory = new CommandValidatorFactory();
         CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory(printer);
-        CommandService service = new CommandService(commandValidatorFactory, commandExecutorFactory);
-        return service;
+        return new CommandService(commandValidatorFactory, commandExecutorFactory);
     }
 }
