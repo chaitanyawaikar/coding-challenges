@@ -55,8 +55,10 @@ class CommandServiceTest {
         when(commandValidatorFactoryMock.getCommandValidator(command)).thenReturn(validatorMock);
         when(validatorMock.validate(command)).thenReturn(false);
 
+        // When
         commandService.processCommand(command);
 
+        // Then
         verify(commandValidatorFactoryMock).getCommandValidator(command);
         verify(validatorMock).validate(command);
         verifyNoMoreInteractions(commandValidatorFactoryMock, commandExecutorFactoryMock);

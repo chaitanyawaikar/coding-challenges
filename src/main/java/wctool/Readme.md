@@ -34,6 +34,7 @@ We can use the following command which would start reading the user input
 
 To pass in the text via the standard input, we could use the pipe `|` separator to pass the result of the first command
 to `ccwc` utility.
+
 `cat test.txt | ccwc -m`
 Characters: 325098
 
